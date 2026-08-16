@@ -544,8 +544,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e594c65d95982e44bedc76f92262cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 328974314}
-  visiableInAwake: 1
+  objs:
+  - {fileID: 1975885836}
+  - {fileID: 2068199346}
+  - {fileID: 964316832}
+  - {fileID: 1933845996}
+  - {fileID: 1670278709}
+  - {fileID: 362578748}
+  - {fileID: 697661515}
+  - {fileID: 910808842}
+  visibleInAwake: 1
 --- !u!1 &39969059
 GameObject:
   m_ObjectHideFlags: 0
@@ -4429,8 +4437,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e594c65d95982e44bedc76f92262cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 78528434}
-  visiableInAwake: 0
+  objs:
+  - {fileID: 124262193}
+  - {fileID: 1852568480}
+  - {fileID: 809622952}
+  - {fileID: 2119543075}
+  - {fileID: 12084708}
+  - {fileID: 1776768}
+  - {fileID: 967076228}
+  visibleInAwake: 0
 --- !u!1 &711665299
 GameObject:
   m_ObjectHideFlags: 0

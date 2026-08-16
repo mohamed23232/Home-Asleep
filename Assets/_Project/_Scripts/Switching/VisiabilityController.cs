@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class VisiabilityController : MonoBehaviour
+public class VisibilityController : MonoBehaviour
 {
-    [SerializeField] private GameObject obj;
+    [SerializeField] private Collider2D[] objs;
 
-    [SerializeField] private bool visiableInAwake = false;
+    [FormerlySerializedAs("visiableInAwake")]
+    [SerializeField] private bool visibleInAwake = false;
 
     void OnEnable()  => SwitchModes.OnTransitionUpdate += OnTransitionUpdate;
     void OnDisable() => SwitchModes.OnTransitionUpdate -= OnTransitionUpdate;
@@ -17,16 +19,9 @@ public class VisiabilityController : MonoBehaviour
     private void OnTransitionUpdate(float t)
     {
         // t = 0 is Awake, t = 1 is Asleep
-        if (visiableInAwake)
-        {
-            // Visible during Awake, Invisible during Asleep
-            obj.SetActive(t < 0.5f);
-        }
-        else
-        {
-            // Invisible during Awake, Visible during Asleep
-            obj.SetActive(t > 0.5f);
-        }
+        bool enable = visibleInAwake ? (t < 0.5f) : (t > 0.5f);
+        foreach (var obj in objs)
+            obj.enabled = enable;
     }
 }
 
