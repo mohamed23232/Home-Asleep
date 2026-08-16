@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: back
+    uniqueID: 1827169827
+    locked: 0
+  - name: front
+    uniqueID: 1131661469
+    locked: 0
+  - name: shelfs
+    uniqueID: 3575869103
+    locked: 0
+  - name: collectables
+    uniqueID: 962893409
+    locked: 0
