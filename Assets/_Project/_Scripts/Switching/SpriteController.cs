@@ -10,6 +10,8 @@ public class SpriteController : MonoBehaviour
     void Awake()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer sr in spriteRenderers)
+            sr.color = awakeColor;
     }
 
     void OnEnable()  => SwitchModes.OnTransitionUpdate += OnTransitionUpdate;
