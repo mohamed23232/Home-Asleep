@@ -1,20 +1,23 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// This script controls the movement and crumbling of platforms.
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(Collider2D))]
 public class PlatformController : MonoBehaviour
 {
+    private const float WAYPOINT_REACH_THRESHOLD = 0.00001f;
 
-    public PlatformWaypoint currentWaypoint;
-    public float maxSpeed;
-    public float accelerationDistance;
-    public float decelerationDistance;
-    public float waitTime;
-    public float crumbleTime;
-    public float restoreTime;
-    public bool onlyPlayerCrumble;
+    [SerializeField] private PlatformWaypoint currentWaypoint;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float accelerationDistance;
+    [SerializeField] private float decelerationDistance;
+    [SerializeField] private float waitTime;
+    [SerializeField] private float crumbleTime;
+    [SerializeField] private float restoreTime;
+    [SerializeField] private bool onlyPlayerCrumble;
 
     [SerializeField]
     private Vector2 speed = Vector2.zero;
@@ -31,15 +34,11 @@ public class PlatformController : MonoBehaviour
     private static readonly string ANIMATION_CRUMBLE = "crumble";
     private static readonly string ANIMATION_RESTORE = "restore";
 
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before
-    /// any of the Update methods is called the first time.
-    /// </summary>
     void Start()
     {
         animator = GetComponent<Animator>();
         myCollider = GetComponent<Collider2D>();
-        pConfig = FindFirstObjectByType<PhysicsConfig>();
+        pConfig = PhysicsConfig.Instance;
         if (!pConfig)
         {
             pConfig = (PhysicsConfig)new GameObject().AddComponent(typeof(PhysicsConfig));
@@ -48,9 +47,6 @@ public class PlatformController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
-    /// </summary>
     void FixedUpdate()
     {
         if (crumbled)
@@ -88,9 +84,11 @@ public class PlatformController : MonoBehaviour
                     return;
                 }
                 Vector2 distance = currentWaypoint.transform.position - transform.position;
-                if (distance.magnitude <= decelerationDistance)
+                float distMag = distance.magnitude;
+                float speedMag = speed.magnitude;
+                if (distMag <= decelerationDistance)
                 {
-                    if (distance.magnitude > 0)
+                    if (distMag > 0)
                     {
                         speed -= Time.fixedDeltaTime * distance.normalized * maxSpeed * maxSpeed /
                             (2 * decelerationDistance);
@@ -100,20 +98,22 @@ public class PlatformController : MonoBehaviour
                         speed = Vector2.zero;
                     }
                 }
-                else if (speed.magnitude < maxSpeed)
+                else if (speedMag < maxSpeed)
                 {
                     if (accelerationDistance > 0)
                     {
                         speed += Time.fixedDeltaTime * distance.normalized * maxSpeed * maxSpeed /
                             (2 * accelerationDistance);
                     }
-                    if (speed.magnitude > maxSpeed || accelerationDistance <= 0)
+                    speedMag = speed.magnitude;
+                    if (speedMag > maxSpeed || accelerationDistance <= 0)
                     {
                         speed = distance.normalized * maxSpeed;
+                        speedMag = maxSpeed;
                     }
                 }
                 Vector3 newPos = Vector2.MoveTowards(transform.position, currentWaypoint.transform.position,
-                    speed.magnitude * Time.fixedDeltaTime);
+                    speedMag * Time.fixedDeltaTime);
                 Vector2 velocity = newPos - transform.position;
                 if (speed.y > 0)
                 {
@@ -126,7 +126,7 @@ public class PlatformController : MonoBehaviour
                     MoveObjects(velocity);
                 }
                 distance = currentWaypoint.transform.position - transform.position;
-                if (distance.magnitude < 0.00001f)
+                if (distance.magnitude < WAYPOINT_REACH_THRESHOLD)
                 {
                     speed = Vector2.zero;
                     currentWaypoint = currentWaypoint.nextWaipoint;
@@ -136,42 +136,19 @@ public class PlatformController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Moves all the objs touching the platform along it's own direction
-    /// </summary>
-    /// <param name="velocity">Velocity in which the objs should be moved</param>
     private void MoveObjects(Vector2 velocity)
     {
-        foreach (ObjectController2D obj in objs)
+        for (int i = 0; i < objs.Count; i++)
         {
-            obj.Move(velocity);
+            objs[i].Move(velocity);
         }
     }
 
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
         AttachObject(other);
     }
 
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
-    void OnTriggerStay2D(Collider2D other)
-    {
-        AttachObject(other);
-    }
-
-    /// <summary>
-    /// Tries to attach and obj to the platform if it's not already attached
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision</param>
     private void AttachObject(Collider2D other)
     {
         if (crumbled)
@@ -181,7 +158,6 @@ public class PlatformController : MonoBehaviour
         ObjectController2D obj = other.GetComponent<ObjectController2D>();
         if (obj && !objs.Contains(obj))
         {
-            // doesn't attach to the obj if it's a 1 way platform and the obj is below it
             if (pConfig.owPlatformMask == (pConfig.owPlatformMask | (1 << gameObject.layer)) &&
                 (obj.transform.position.y < transform.position.y || obj.TotalSpeed.y > 0))
             {
@@ -202,11 +178,6 @@ public class PlatformController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sent when another object leaves a trigger collider attached to
-    /// this object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerExit2D(Collider2D other)
     {
         ObjectController2D obj = other.GetComponent<ObjectController2D>();
