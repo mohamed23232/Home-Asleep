@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && interactSystem.CollectedStarCount == 3)
+        if (other.CompareTag("Player") && interactSystem.CollectedStarCount >= 3)
         {
             OnGoToNextLevel?.Invoke();
             resultUI.gameObject.SetActive(true);
