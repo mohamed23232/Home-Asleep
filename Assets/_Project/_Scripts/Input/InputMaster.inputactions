@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "InputMaster",
     "maps": [
         {
@@ -7,53 +8,48 @@
             "actions": [
                 {
                     "name": "Movement",
+                    "type": "Value",
                     "id": "497e3b1a-b460-48b1-90f0-8049fcfea380",
-                    "expectedControlLayout": "Axis",
-                    "continuous": true,
-                    "passThrough": false,
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
-                    "bindings": []
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Jump",
+                    "type": "Value",
                     "id": "504d8764-788c-4ed4-85d3-a7411dc9f6bf",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "bindings": []
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Dash",
+                    "type": "Value",
                     "id": "96f237e6-f94b-43fe-a6b2-9f494e4d962e",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "bindings": []
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Interact",
+                    "type": "Value",
                     "id": "f85a010c-61c9-4551-8e9e-030b96d7b10b",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "bindings": []
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "Attack A",
-                    "id": "f72be973-ca24-4efb-aef6-f6f7c04b7361",
-                    "expectedControlLayout": "",
-                    "continuous": false,
-                    "passThrough": false,
+                    "name": "Switch",
+                    "type": "Value",
+                    "id": "1d299d58-bdc8-4a79-bb8f-06fde3ba3972",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "bindings": []
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -65,10 +61,8 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Jump",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -78,10 +72,30 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56b162b4-99ee-41f0-b1fa-65558853e140",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e344017d-fce2-45af-86bd-e0cdb3feea10",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Switch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -91,10 +105,8 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Dash",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -104,10 +116,8 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Dash",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -117,10 +127,8 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Interact",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -130,10 +138,8 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Interact",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "arrowKeys",
@@ -143,10 +149,8 @@
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": true,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "up",
@@ -156,10 +160,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "down",
@@ -169,10 +171,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
@@ -182,10 +182,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "right",
@@ -195,10 +193,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "wasdKeys",
@@ -208,10 +204,8 @@
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": true,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "up",
@@ -221,10 +215,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "down",
@@ -234,10 +226,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
@@ -247,10 +237,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "right",
@@ -260,10 +248,8 @@
                     "processors": "",
                     "groups": ";Keyboard",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "dpad",
@@ -273,10 +259,8 @@
                     "processors": "AxisDeadzone(min=0.125,max=0.925)",
                     "groups": "",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": true,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "up",
@@ -286,10 +270,8 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "down",
@@ -299,10 +281,8 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
@@ -312,10 +292,8 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "right",
@@ -325,10 +303,8 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "leftStick",
@@ -338,10 +314,8 @@
                     "processors": "AxisDeadzone(min=0.125,max=0.925)",
                     "groups": "",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": true,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "up",
@@ -351,10 +325,8 @@
                     "processors": "StickDeadzone,AxisDeadzone",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "down",
@@ -364,10 +336,8 @@
                     "processors": "StickDeadzone,AxisDeadzone",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "left",
@@ -377,10 +347,8 @@
                     "processors": "StickDeadzone,AxisDeadzone",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "right",
@@ -390,36 +358,8 @@
                     "processors": "StickDeadzone,AxisDeadzone",
                     "groups": ";Gamepad",
                     "action": "Movement",
-                    "chainWithPrevious": false,
                     "isComposite": false,
-                    "isPartOfComposite": true,
-                    "modifiers": ""
-                },
-                {
-                    "name": "",
-                    "id": "8b720e2f-3ca7-4fc9-ab6c-83e9a1d87d5d",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Attack A",
-                    "chainWithPrevious": false,
-                    "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
-                },
-                {
-                    "name": "",
-                    "id": "61b919f3-31ed-48ba-84bb-0c6137a13aa3",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Attack A",
-                    "chainWithPrevious": false,
-                    "isComposite": false,
-                    "isPartOfComposite": false,
-                    "modifiers": ""
+                    "isPartOfComposite": true
                 }
             ]
         }
@@ -427,7 +367,6 @@
     "controlSchemes": [
         {
             "name": "Keyboard",
-            "basedOn": "",
             "bindingGroup": "Keyboard",
             "devices": [
                 {
@@ -439,7 +378,6 @@
         },
         {
             "name": "Gamepad",
-            "basedOn": "",
             "bindingGroup": "Gamepad",
             "devices": [
                 {
