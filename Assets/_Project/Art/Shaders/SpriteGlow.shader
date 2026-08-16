@@ -1,5 +1,6 @@
 // Sprite Glow Shader — Unity 6 / Built-in Render Pipeline
 // Replaces the old ShaderGraph (UnlitMasterNode) which was removed in Unity 6.
+// Enhanced with HDR support for Bloom and Pulsing for collectibles like Stars.
 //
 // Graph logic reproduced:
 //   1. Sample _MainTex with UV0
@@ -13,8 +14,13 @@ Shader "Shader Graphs/Sprite Glow"
     Properties
     {
         _MainTex       ("Main Texture",   2D)         = "white" {}
-        _GlowColor     ("Glow Color",     Color)      = (0, 0.816, 0.934, 0)
-        _GlowIntensity ("Glow Intensity", Range(0,1)) = 0
+        [HDR] _GlowColor("Glow Color (HDR)", Color)   = (0, 0.816, 0.934, 1)
+        _GlowIntensity ("Glow Intensity (0=Full Glow, 1=Normal)", Range(0,1)) = 0
+        
+        [Header(Pulse Options)]
+        [Toggle] _UsePulse("Enable Pulse", Float) = 0
+        _PulseSpeed("Pulse Speed", Float) = 3.0
+        _PulseMin("Pulse Minimum Intensity", Range(0, 1)) = 0.5
     }
 
     SubShader
@@ -46,6 +52,10 @@ Shader "Shader Graphs/Sprite Glow"
             float4    _MainTex_ST;
             fixed4    _GlowColor;
             half      _GlowIntensity;
+            
+            float     _UsePulse;
+            float     _PulseSpeed;
+            float     _PulseMin;
 
             // ── Vertex Input / Output ─────────────────────────────────────────
             struct appdata
@@ -80,12 +90,26 @@ Shader "Shader Graphs/Sprite Glow"
 
                 // 2. Vertex colour (SpriteRenderer tint / flash animations)
                 fixed4 vertCol = i.color;
+                
+                // Pulsing multiplier
+                float pulseMult = 1.0;
+                if (_UsePulse > 0.5)
+                {
+                    // Basic sine wave (0 to 1)
+                    float rawSin = (sin(_Time.y * _PulseSpeed) + 1.0) * 0.5;
+                    
+                    // Apply smoothstep to ease the extremes (makes it linger softly at the top and bottom)
+                    float smoothPulse = smoothstep(0.0, 1.0, rawSin);
+                    
+                    pulseMult = lerp(_PulseMin, 1.0, smoothPulse);
+                }
 
                 // 3. "A" branch: VertexColor * GlowColor  (glow tint)
-                fixed4 glowBranch   = vertCol * _GlowColor;
+                // We apply the pulse multiplier here to throb the glow intensity
+                fixed4 glowBranch   = vertCol * _GlowColor * pulseMult;
 
                 // 4. "B" branch: (Texture * VertexColor) * 2  (standard sprite, 2x bright)
-                fixed4 spriteBranch = vertCol * tex * 2.0;
+                fixed4 spriteBranch = vertCol * tex * 2.0 * pulseMult;
 
                 // 5. Lerp: 0 = full glow, 1 = normal sprite
                 fixed4 result = lerp(glowBranch, spriteBranch, _GlowIntensity);
