@@ -20,13 +20,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite Glow
+  m_Name: Star Glow
   m_Shader: {fileID: 4800000, guid: 30c5b83aee9dd6041aeb425ace9786ea, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - ETC1_EXTERNAL_ALPHA
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _USEPULSE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -54,7 +55,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c7d5c75323f7dce47876c5c107fba2eb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 45ab8c69bd6f305418aed08cb997f270, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -86,8 +87,8 @@ Material:
     - _GlowIntensity: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _PulseMin: 0.778
-    - _PulseSpeed: 3
+    - _PulseMin: 0.614
+    - _PulseSpeed: 10
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -95,7 +96,7 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
-    - _UsePulse: 0
+    - _UsePulse: 1
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:

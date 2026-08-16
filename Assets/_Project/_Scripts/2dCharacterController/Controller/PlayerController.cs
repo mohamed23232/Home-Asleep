@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,13 @@ public class PlayerController : MonoBehaviour
     private InteractSystem interact;
     private Vector2 axis;
 
+    private bool isAwake = true;
+
+    public bool IsAwake => isAwake;
+    public bool IsAsleep => !isAwake;
+
+    public static Action<bool> OnSwitch;
+    
     void Awake()
     {
         character = GetComponent<CharacterController2D>();
@@ -23,6 +31,7 @@ public class PlayerController : MonoBehaviour
         controls.Player.Jump.canceled      += EndJump;
         controls.Player.Dash.started       += Dash;
         controls.Player.Interact.started   += Interact;
+        controls.Player.Switch.started     += Switch;
     }
 
     void FixedUpdate()
@@ -63,6 +72,12 @@ public class PlayerController : MonoBehaviour
         {
             interact.Interact();
         }
+    }
+
+    private void Switch(InputAction.CallbackContext context)
+    {
+        isAwake = !isAwake;
+        OnSwitch?.Invoke(isAwake);
     }
 
     void OnEnable()  { controls.Player.Enable(); }

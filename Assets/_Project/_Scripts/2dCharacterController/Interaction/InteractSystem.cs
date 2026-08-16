@@ -18,6 +18,12 @@ public class InteractSystem : MonoBehaviour
     private PushableObject closestPushable = null;
     private PhysicsConfig pConfig;
 
+    private int collectedStarCount = 0;
+    private int collectedNormalCount = 0;
+
+    public int CollectedStarCount => collectedStarCount;
+    public int CollectedNormalCount => collectedNormalCount;
+
     void Start()
     {
         pConfig = PhysicsConfig.Instance;
@@ -44,12 +50,12 @@ public class InteractSystem : MonoBehaviour
                 closestObject = obj;
             }
         }
-        // Auto-collect collectibles on contact
-        if (closestObject is CollectibleObject)
+        if (closestObject is CollectibleObject || closestObject is AnimationInteractableObject)
         {
             closestObject.Interact(this);
             closestObject = null;
         }
+
 
         // Find the closest pushable in range
         closestPushable = null;
@@ -75,10 +81,15 @@ public class InteractSystem : MonoBehaviour
         }
     }
 
-    public void AddToCount()
+    public void AddToStarCount()
     {
-        CollectedCount++;
-        Debug.Log("Collected " + CollectedCount);
+        collectedStarCount++;
+        Debug.Log("Collected " + collectedStarCount);
+    }
+    public void AddToNormalCount()
+    {
+        collectedNormalCount++;
+        Debug.Log("Collected " + collectedNormalCount);
     }
 
     void OnDrawGizmosSelected()
