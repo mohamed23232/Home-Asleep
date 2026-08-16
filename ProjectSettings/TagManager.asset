@@ -47,9 +47,21 @@ TagManager:
   - name: front
     uniqueID: 1131661469
     locked: 0
+  - name: stair extension
+    uniqueID: 1646221859
+    locked: 0
+  - name: extension
+    uniqueID: 108045091
+    locked: 0
   - name: shelfs
     uniqueID: 3575869103
     locked: 0
   - name: collectables
     uniqueID: 962893409
+    locked: 0
+  - name: player
+    uniqueID: 955554957
+    locked: 0
+  - name: trees
+    uniqueID: 855106117
     locked: 0
