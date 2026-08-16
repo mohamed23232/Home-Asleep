@@ -17,7 +17,7 @@ MonoBehaviour:
   decelerationTime: 0.3
   canUseSlopes: 1
   maxExtraJumps: 1
-  maxJumpHeight: 3.5
+  maxJumpHeight: 1.5
   minJumpHeight: 0.2
   canWallSlide: 1
   wallSlideSpeed: 2

@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Asleep_platform
+  - vertical
+  - asleep
+  - horizontal
   layers:
   - Default
   - TransparentFX
@@ -64,4 +68,7 @@ TagManager:
     locked: 0
   - name: trees
     uniqueID: 855106117
+    locked: 0
+  - name: Frontest
+    uniqueID: 1899700253
     locked: 0
