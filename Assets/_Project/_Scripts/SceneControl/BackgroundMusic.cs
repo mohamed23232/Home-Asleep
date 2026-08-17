@@ -4,13 +4,14 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(AudioSource))]
 public class BackgroundMusic : MonoBehaviour
 {
-    [SerializeField] private AudioClip normalBGM;
+    [SerializeField] private AudioClip uiBGM;
+    [SerializeField] private AudioClip levelBGM;
 
     private AudioSource audioSource;
 
     private void Awake()
     {
-        // Prevent duplicates if we return to the Main Menu
+        // Prevent duplicates
         BackgroundMusic existingMusic = FindFirstObjectByType<BackgroundMusic>();
 
         if (existingMusic != null && existingMusic != this)
@@ -30,23 +31,26 @@ public class BackgroundMusic : MonoBehaviour
 
     private void Start()
     {
-        if (!audioSource.isPlaying)
-        {
-            audioSource.clip = normalBGM;
-            audioSource.Play();
-        }
+        PlayMusicForScene(SceneManager.GetActiveScene());
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Keep music in Main Menu and Credits
-        if (scene.name == "MainMenu" || scene.name == "Credits")
-        {
-            return;
-        }
+        PlayMusicForScene(scene);
+    }
 
-        // Stop and destroy music when entering a level
-        Destroy(gameObject);
+    private void PlayMusicForScene(Scene scene)
+    {
+        bool isUI = scene.name == "MainMenu" || scene.name == "Credits";
+
+        AudioClip clip = isUI ? uiBGM : levelBGM;
+
+        // Don't restart the music if we're already playing the correct clip
+        if (audioSource.clip == clip && audioSource.isPlaying)
+            return;
+
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     private void OnDestroy()
