@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -25,8 +26,11 @@ public class ResultUI : MonoBehaviour
         LevelManager.OnGoToNextLevel -= OnLevelComplete;
     }
 
-    void Start()
+
+
+    private void Start()
     {
+        SelectPlayButton();
         interactSystem = FindFirstObjectByType<InteractSystem>();
         nextLevelBtn.onClick.AddListener(LoadNextLevel);
         gameObject.SetActive(false);
@@ -34,6 +38,10 @@ public class ResultUI : MonoBehaviour
 
     void Update()
     {
+        if (EventSystem.current.currentSelectedGameObject == null)
+        {
+            SelectPlayButton();
+        }
         normalCountText.text = interactSystem.CollectedNormalCount.ToString() + "/" + TotalObjects;
     }
 
@@ -46,5 +54,10 @@ public class ResultUI : MonoBehaviour
     {
         Debug.Log("Loading next level: " + nextLevelIndex);
         SceneManager.LoadScene(nextLevelIndex);
+    }
+
+    private void SelectPlayButton()
+    {
+        EventSystem.current.SetSelectedGameObject(nextLevelBtn.gameObject);
     }
 }

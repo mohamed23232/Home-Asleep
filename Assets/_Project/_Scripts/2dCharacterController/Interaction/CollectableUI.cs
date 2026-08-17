@@ -13,7 +13,7 @@ public class CollectableUI : MonoBehaviour
 
     void Start()
     {
-        interactSystem = FindObjectOfType<InteractSystem>();
+        interactSystem = FindFirstObjectByType<InteractSystem>();
         for (int i = 0; i < stars.Length; i++)
         {
             stars[i].color = Color.black;
