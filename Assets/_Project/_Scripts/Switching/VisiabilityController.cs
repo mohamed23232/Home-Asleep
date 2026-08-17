@@ -8,18 +8,17 @@ public class VisibilityController : MonoBehaviour
     [FormerlySerializedAs("visiableInAwake")]
     [SerializeField] private bool visibleInAwake = false;
 
-    void OnEnable()  => SwitchModes.OnTransitionUpdate += OnTransitionUpdate;
-    void OnDisable() => SwitchModes.OnTransitionUpdate -= OnTransitionUpdate;
+    void OnEnable() => PlayerController.OnSwitch += HandleSwitch;
+    void OnDisable() => PlayerController.OnSwitch -= HandleSwitch;
 
     void Start()
     {
-        OnTransitionUpdate(SwitchModes.CurrentT);
+        HandleSwitch(SwitchModes.CurrentT < 0.5f);
     }
 
-    private void OnTransitionUpdate(float t)
+    private void HandleSwitch(bool isAwake)
     {
-        // t = 0 is Awake, t = 1 is Asleep
-        bool enable = visibleInAwake ? (t < 0.5f) : (t > 0.5f);
+        bool enable = isAwake == visibleInAwake;
         foreach (var obj in objs)
             obj.enabled = enable;
     }

@@ -109,20 +109,20 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 108764293}
     m_ColliderPaths:
-    - - X: 260393184
-        Y: 193287136
-      - X: -90170936
-        Y: 193287136
-      - X: -90170936
-        Y: -39384676
-      - X: 260393184
-        Y: -39384676
+    - - X: 527892608
+        Y: 390307744
+      - X: -72551192
+        Y: 390307744
+      - X: -72551192
+        Y: -39384652
+      - X: 527892608
+        Y: -39384652
   m_CompositePaths:
     m_Paths:
-    - - {x: 26.039318, y: 19.328714}
-      - {x: -9.017094, y: 19.328714}
-      - {x: -9.017094, y: -3.9384677}
-      - {x: 26.039318, y: -3.9384677}
+    - - {x: 52.789234, y: -3.9384654}
+      - {x: 52.789234, y: 39.030773}
+      - {x: -7.2551193, y: 39.030746}
+      - {x: -7.2550898, y: -3.9384654}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -188,7 +188,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 1
   m_CompositeOrder: 0
-  m_Offset: {x: 8.511112, y: 7.695123}
+  m_Offset: {x: 22.76707, y: 17.546154}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -198,7 +198,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 35.05641, y: 23.267181}
+  m_Size: {x: 60.04438, y: 42.96924}
   m_EdgeRadius: 0
 --- !u!1 &6849151202310540924
 GameObject:
@@ -227,7 +227,7 @@ Transform:
   m_GameObject: {fileID: 6849151202310540924}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5, y: -1, z: -10}
+  m_LocalPosition: {x: -2.04844, y: -0.42645025, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -302,6 +302,8 @@ GameObject:
   - component: {fileID: 6849151202356881846}
   - component: {fileID: 6849151202356881833}
   - component: {fileID: 6849151202356881832}
+  - component: {fileID: 6837015828020098868}
+  - component: {fileID: 2571714286452863056}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -318,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 6849151202356881835}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 1.0615323, z: -10}
+  m_LocalPosition: {x: 10.522688, y: 6.0615354, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -359,7 +361,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -417,6 +419,81 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6837015828020098868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849151202356881835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 6849151202356881847}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
+--- !u!114 &2571714286452863056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849151202356881835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cec56555cd9ea14d8209dd8bcd49b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  postProcessVolume: {fileID: 0}
+  zoomAmount: 2
+  ppvTargetWeight: 1
 --- !u!1 &6849151202624417243
 GameObject:
   m_ObjectHideFlags: 0
