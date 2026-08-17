@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class CollectibleObject : InteractableObject
 {
+    private const float SOUND_VOLUME = 0.3f;
 
     enum CollectibleType
     {
@@ -41,6 +42,9 @@ public class CollectibleObject : InteractableObject
         }
     }
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip collectSound;
+
     public override void Interact(InteractSystem interactSystem)
     {
         if (type == CollectibleType.Star)
@@ -51,6 +55,21 @@ public class CollectibleObject : InteractableObject
         {
             interactSystem.AddToNormalCount();
         }
+
+        if (collectSound != null)
+        {
+            // Play the sound at the camera's position or the object's position
+            // We use the camera position so the sound is consistently loud since the object will be destroyed
+            if (Camera.main != null)
+            {
+                AudioSource.PlayClipAtPoint(collectSound, Camera.main.transform.position, SOUND_VOLUME);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(collectSound, transform.position, SOUND_VOLUME);
+            }
+        }
+
         Destroy(gameObject);
     }
 }

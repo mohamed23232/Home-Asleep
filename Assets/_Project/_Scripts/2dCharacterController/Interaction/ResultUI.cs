@@ -9,48 +9,61 @@ public class ResultUI : MonoBehaviour
     [SerializeField] private int TotalObjects = 10;
 
     [SerializeField] private Button nextLevelBtn;
-
-    private InteractSystem interactSystem;
+    [SerializeField] private AudioClip resultSound;
 
     [SerializeField] private TextMeshProUGUI normalCountText;
 
+    private AudioSource audioSource;
+    private InteractSystem interactSystem;
+
     private string nextLevelIndex;
 
-    void OnEnable()
+    private void Awake()
     {
-        LevelManager.OnGoToNextLevel += OnLevelComplete;
+        audioSource = GetComponent<AudioSource>();
     }
 
-    void OnDisable()
+    private void OnEnable()
+    {
+        LevelManager.OnGoToNextLevel += OnLevelComplete;
+
+        if (audioSource != null && resultSound != null)
+        {
+            audioSource.PlayOneShot(resultSound);
+        }
+    }
+
+    private void OnDisable()
     {
         LevelManager.OnGoToNextLevel -= OnLevelComplete;
     }
 
-
-
     private void Start()
     {
-        SelectPlayButton();
         interactSystem = FindFirstObjectByType<InteractSystem>();
+
         nextLevelBtn.onClick.AddListener(LoadNextLevel);
+
         gameObject.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
         if (EventSystem.current.currentSelectedGameObject == null)
         {
             SelectPlayButton();
         }
-        normalCountText.text = interactSystem.CollectedNormalCount.ToString() + "/" + TotalObjects;
+
+        normalCountText.text =
+            interactSystem.CollectedNormalCount + "/" + TotalObjects;
     }
 
-    void OnLevelComplete(string nextLevel)
+    private void OnLevelComplete(string nextLevel)
     {
         nextLevelIndex = nextLevel;
     }
 
-    void LoadNextLevel()
+    private void LoadNextLevel()
     {
         Debug.Log("Loading next level: " + nextLevelIndex);
         SceneManager.LoadScene(nextLevelIndex);

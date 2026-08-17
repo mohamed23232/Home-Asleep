@@ -37,6 +37,7 @@ public class ObjectController2D : MonoBehaviour
     public bool IsOnWall => (bool)collisions.hHit;
     public float HorizontalSpeed => speed.x;
     public float ExternalHorizontalSpeed => externalForce.x;
+    public int GroundLayer => collisions.groundLayer;
 
     public virtual void Start()
     {

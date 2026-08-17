@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1882247456}
   - component: {fileID: 6410667070896406223}
   - component: {fileID: 4866108287453825445}
+  - component: {fileID: 2612231417620538099}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -293,6 +294,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 0.5
   rangePositionOffset: {x: 0, y: 0.5}
+--- !u!114 &2612231417620538099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41342835647678644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68514a7d55543f44187f61e35e852e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSoundController
+  jumpClip: {fileID: 8300000, guid: e79517204e9a7db489ea4d5006d909a7, type: 3}
+  jumpLandingClip: {fileID: 8300000, guid: 4f05a7679c8ad4e4a8e3e9001e8e74d9, type: 3}
+  poofClip: {fileID: 8300000, guid: 9a7d18b6ef2a7c647981b30393adcf7f, type: 3}
 --- !u!1 &7662770109407060711
 GameObject:
   m_ObjectHideFlags: 0
