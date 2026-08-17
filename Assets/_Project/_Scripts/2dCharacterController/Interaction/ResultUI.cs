@@ -3,31 +3,32 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ResultUI: MonoBehaviour
+public class ResultUI : MonoBehaviour
 {
     [SerializeField] private int TotalObjects = 10;
 
     [SerializeField] private Button nextLevelBtn;
-    
+
     private InteractSystem interactSystem;
-    
+
     [SerializeField] private TextMeshProUGUI normalCountText;
-    
+
+    private string nextLevelIndex;
 
     void OnEnable()
     {
-        LevelManager.OnGoToNextLevel += NextLevel;
+        LevelManager.OnGoToNextLevel += OnLevelComplete;
     }
 
     void OnDisable()
     {
-        LevelManager.OnGoToNextLevel -= NextLevel;
+        LevelManager.OnGoToNextLevel -= OnLevelComplete;
     }
 
     void Start()
     {
-        interactSystem = FindObjectOfType<InteractSystem>();
-        nextLevelBtn.onClick.AddListener(NextLevel);
+        interactSystem = FindFirstObjectByType<InteractSystem>();
+        nextLevelBtn.onClick.AddListener(LoadNextLevel);
         gameObject.SetActive(false);
     }
 
@@ -36,8 +37,14 @@ public class ResultUI: MonoBehaviour
         normalCountText.text = interactSystem.CollectedNormalCount.ToString() + "/" + TotalObjects;
     }
 
-    void NextLevel()
+    void OnLevelComplete(string nextLevel)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        nextLevelIndex = nextLevel;
+    }
+
+    void LoadNextLevel()
+    {
+        Debug.Log("Loading next level: " + nextLevelIndex);
+        SceneManager.LoadScene(nextLevelIndex);
     }
 }

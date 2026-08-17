@@ -3,28 +3,33 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int nextLevel = 1;
+    [SerializeField] private string nextLevel;
 
     [SerializeField] private ResultUI resultUI;
 
-    public static Action OnGoToNextLevel;
+    public static Action<string> OnGoToNextLevel;
 
     private InteractSystem interactSystem;
 
     void Start()
     {
         interactSystem = FindObjectOfType<InteractSystem>();
-        
+
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && interactSystem.CollectedStarCount >= 3)
+        if (other.CompareTag("Player"))
         {
-            OnGoToNextLevel?.Invoke();
-            resultUI.gameObject.SetActive(true);
+            if (interactSystem.CollectedStarCount >= 3)
+            {
+                resultUI.gameObject.SetActive(true);
+                OnGoToNextLevel?.Invoke(nextLevel);
+            }
+            else
+            {
+                Debug.Log("Not enough stars");
+            }
         }
-        else
-            Debug.Log("Not enough stars");
     }
 }
