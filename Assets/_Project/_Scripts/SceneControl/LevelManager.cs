@@ -13,8 +13,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        interactSystem = FindObjectOfType<InteractSystem>();
-
+        interactSystem = FindFirstObjectByType<InteractSystem>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
