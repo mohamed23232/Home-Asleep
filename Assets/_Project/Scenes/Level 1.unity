@@ -17562,7 +17562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 526e5eb8e57800e499dd6765f9370aeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextLevel: 1
+  nextLevel: 3
   resultUI: {fileID: 50801685}
 --- !u!1 &2119543074
 GameObject:
