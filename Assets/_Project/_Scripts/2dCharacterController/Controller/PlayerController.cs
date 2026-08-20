@@ -56,6 +56,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpecialStart"))
+        {
+            Animator animator = GetComponentInChildren<Animator>();
+            if (animator != null)
+            {
+                // Must match the Animator parameter name exactly.
+                animator.SetTrigger("specialJump");
+                // Jump() also sets the "jump" trigger, which would steal Any State into Jumping.
+                animator.ResetTrigger("jump");
+            }
+
+            character.Jump();
+
+            if (animator != null)
+                animator.ResetTrigger("jump");
+        }
+    }
+
+
     private void EndJump(InputAction.CallbackContext context)
     {
         character.EndJump();
