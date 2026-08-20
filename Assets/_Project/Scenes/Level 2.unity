@@ -1868,7 +1868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   awakeColor: {r: 0, g: 0.3529412, b: 1, a: 1}
-  asleepColor: {r: 0, g: 0.3529412, b: 1, a: 0.78431374}
+  asleepColor: {r: 0, g: 0.3529412, b: 1, a: 0.19607843}
 --- !u!114 &219306351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6201,7 +6201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ca63e9d956d184cad8363cb0195527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  awakeColor: {r: 1, g: 0, b: 0, a: 0.78431374}
+  awakeColor: {r: 1, g: 0, b: 0, a: 0.39215687}
   asleepColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1169976784
 MonoBehaviour:
