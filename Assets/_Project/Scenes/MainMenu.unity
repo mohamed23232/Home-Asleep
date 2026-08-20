@@ -719,7 +719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5bd697b96d69a4fba8c8dfdcd92306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusic
-  normalBGM: {fileID: 8300000, guid: df5e5f2abbe13764588a9d3423e1c2b8, type: 3}
+  uiBGM: {fileID: 8300000, guid: df5e5f2abbe13764588a9d3423e1c2b8, type: 3}
+  levelBGM: {fileID: 8300000, guid: 9b13298d9d780294e94c64849851c27e, type: 3}
 --- !u!82 &714007586
 AudioSource:
   m_ObjectHideFlags: 0

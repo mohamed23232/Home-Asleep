@@ -1868,7 +1868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   awakeColor: {r: 0, g: 0.3529412, b: 1, a: 1}
-  asleepColor: {r: 0, g: 0.3529412, b: 1, a: 0.78431374}
+  asleepColor: {r: 0, g: 0.3529412, b: 1, a: 0.19607843}
 --- !u!114 &219306351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6201,7 +6201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ca63e9d956d184cad8363cb0195527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  awakeColor: {r: 1, g: 0, b: 0, a: 0.78431374}
+  awakeColor: {r: 1, g: 0, b: 0, a: 0.39215687}
   asleepColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &1169976784
 MonoBehaviour:
@@ -6542,7 +6542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6849151202310540923, guid: 9bdb81b8b785e3f41bb13dab7280875d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.42645025
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6849151202356881846, guid: 9bdb81b8b785e3f41bb13dab7280875d, type: 3}
       propertyPath: orthographic size
@@ -6747,7 +6747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 41342835647678606, guid: 402b4815d9b67a2429bb7633cd67b41f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.42645025
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 41342835647678606, guid: 402b4815d9b67a2429bb7633cd67b41f, type: 3}
       propertyPath: m_LocalPosition.z

@@ -17,14 +17,23 @@ public class CollectibleObject : InteractableObject
     [SerializeField] private float floatAmplitude = 0.2f;
     [SerializeField] private float floatSpeed = 2f;
 
+    [Header("Puff Animation")]
+    [SerializeField] private float puffDuration = 0.5f;
+
+    private static readonly int PuffId = Animator.StringToHash("puff");
+
     [SerializeField] private CollectibleType type = CollectibleType.normal;
 
     private float startY;
     private float timeOffset;
 
+    private Animator objectAnimator;
+
     void Awake()
     {
         GetComponent<Collider2D>().isTrigger = true;
+        objectAnimator = GetComponent<Animator>();
+
     }
 
     void Start()
@@ -70,6 +79,17 @@ public class CollectibleObject : InteractableObject
             }
         }
 
-        Destroy(gameObject);
+        GetComponent<Collider2D>().enabled = false;
+        enableFloating = false;
+
+        if (objectAnimator != null)
+        {
+            objectAnimator.SetTrigger(PuffId);
+            Destroy(gameObject, puffDuration);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
