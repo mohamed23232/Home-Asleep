@@ -19,7 +19,7 @@ MonoBehaviour:
   maxExtraJumps: 1
   maxJumpHeight: 1.5
   minJumpHeight: 0.2
-  canWallSlide: 1
+  canWallSlide: 0
   wallSlideSpeed: 2
   canWallJump: 1
   wallJumpSpeed: 5
