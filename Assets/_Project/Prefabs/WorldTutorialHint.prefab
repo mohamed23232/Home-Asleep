@@ -50,6 +50,8 @@ MonoBehaviour:
   fontMaterial: {fileID: 8906961135881282263, guid: 65b17ede6f4ea67468b363783669a859, type: 2}
   fontSize: 3
   iconScale: 4.2
+  iconPadding: 0.35
+  iconTextGap: 0.55
   visibleDistance: 12
   textColor: {r: 1, g: 1, b: 1, a: 1}
   sortingLayerName: Frontest
