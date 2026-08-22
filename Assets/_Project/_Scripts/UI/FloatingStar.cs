@@ -12,7 +12,7 @@ public class FloatingStar : MonoBehaviour
 
     private void Start()
     {
-        startPosition = transform.position;
+        startPosition = transform.localPosition;
     }
 
     private void Update()
@@ -20,6 +20,6 @@ public class FloatingStar : MonoBehaviour
         float x = Mathf.Sin(Time.time * horizontalSpeed) * horizontalAmount;
         float y = Mathf.Sin(Time.time * verticalSpeed) * verticalAmount;
 
-        transform.position = startPosition + new Vector3(x, y, 0f);
+        transform.localPosition = startPosition + new Vector3(x, y, 0f);
     }
 }

@@ -8,6 +8,8 @@ public class SceneLoad : MonoBehaviour
     [SerializeField] private string sceneName;
     [SerializeField] private Button playButton;
 
+    [SerializeField] private bool isSelectedFirst = true;
+
     private void OnEnable()
     {
         playButton.onClick.AddListener(OnPlayClicked);
@@ -20,7 +22,8 @@ public class SceneLoad : MonoBehaviour
 
     private void Start()
     {
-        SelectPlayButton();
+        if (isSelectedFirst)
+            SelectPlayButton();
     }
 
     private void Update()
