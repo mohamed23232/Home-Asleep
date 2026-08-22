@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     public bool IsAsleep => !isAwake;
 
     public static Action<bool> OnSwitch;
-    
+    public static Action OnSpecialJump;
+
     void Awake()
     {
         character = GetComponent<CharacterController2D>();
@@ -26,12 +27,12 @@ public class PlayerController : MonoBehaviour
 
         controls = new InputMaster();
         controls.Player.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
-        controls.Player.Movement.canceled  += ctx => Move(Vector2.zero);
-        controls.Player.Jump.started       += Jump;
-        controls.Player.Jump.canceled      += EndJump;
-        controls.Player.Dash.started       += Dash;
-        controls.Player.Interact.started   += Interact;
-        controls.Player.Switch.started     += Switch;
+        controls.Player.Movement.canceled += ctx => Move(Vector2.zero);
+        controls.Player.Jump.started += Jump;
+        controls.Player.Jump.canceled += EndJump;
+        controls.Player.Dash.started += Dash;
+        controls.Player.Interact.started += Interact;
+        controls.Player.Switch.started += Switch;
     }
 
     void FixedUpdate()
@@ -60,19 +61,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("SpecialStart"))
         {
-            Animator animator = GetComponentInChildren<Animator>();
-            if (animator != null)
-            {
-                // Must match the Animator parameter name exactly.
-                animator.SetTrigger("specialJump");
-                // Jump() also sets the "jump" trigger, which would steal Any State into Jumping.
-                animator.ResetTrigger("jump");
-            }
-
+            OnSpecialJump?.Invoke();
             character.Jump();
-
-            if (animator != null)
-                animator.ResetTrigger("jump");
         }
     }
 
@@ -101,6 +91,6 @@ public class PlayerController : MonoBehaviour
         OnSwitch?.Invoke(isAwake);
     }
 
-    void OnEnable()  { controls.Player.Enable(); }
+    void OnEnable() { controls.Player.Enable(); }
     void OnDisable() { controls.Player.Disable(); }
 }

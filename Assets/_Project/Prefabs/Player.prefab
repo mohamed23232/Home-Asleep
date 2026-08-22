@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7018911988841287167}
   - component: {fileID: 1882247456}
   - component: {fileID: 4866108287453825445}
+  - component: {fileID: 9002127523791506530}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -256,6 +257,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactRange: 0.85
   rangePositionOffset: {x: 0, y: -0.03}
+--- !u!114 &9002127523791506530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41342835647678644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68514a7d55543f44187f61e35e852e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterSoundController
+  jumpClip: {fileID: 0}
+  jumpLandingClip: {fileID: 0}
+  poofClip: {fileID: 0}
+  specialJumpClip: {fileID: 8300000, guid: 717e9b0aae911d540aa27b4357ea7912, type: 3}
 --- !u!1 &2827359030510850783
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +285,7 @@ GameObject:
   - component: {fileID: 4723188787924684969}
   - component: {fileID: 5827107697582745406}
   - component: {fileID: 9108779368284400495}
+  - component: {fileID: 4249397419874166708}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -384,3 +402,15 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &4249397419874166708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2827359030510850783}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2efbf20e5fcb56e4da2aaf483f62a5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TriggerAnimation

@@ -227,7 +227,7 @@ Transform:
   m_GameObject: {fileID: 6849151202310540924}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.04844, y: -0.42645025, z: -10}
+  m_LocalPosition: {x: -2.04844, y: 0.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 6849151202356881832}
   - component: {fileID: 6837015828020098868}
   - component: {fileID: 2571714286452863056}
+  - component: {fileID: 6847011791621034859}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -320,7 +321,7 @@ Transform:
   m_GameObject: {fileID: 6849151202356881835}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.522688, y: 6.0615354, z: -10}
+  m_LocalPosition: {x: 10.522688, y: 6.061535, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -494,6 +495,22 @@ MonoBehaviour:
   postProcessVolume: {fileID: 0}
   zoomAmount: 2
   ppvTargetWeight: 1
+--- !u!114 &6847011791621034859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6849151202356881835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a81c4379789194d94469c1914f9eec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpecialJumpEffect
+  slowMotionScale: 0.25
+  holdDuration: 1.2
+  rampDuration: 0.15
+  zoomIn: 3
 --- !u!1 &6849151202624417243
 GameObject:
   m_ObjectHideFlags: 0

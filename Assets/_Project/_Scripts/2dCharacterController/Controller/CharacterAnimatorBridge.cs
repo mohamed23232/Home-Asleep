@@ -8,11 +8,13 @@ public class CharacterAnimatorBridge : MonoBehaviour
     private static readonly int HSpeedId = Animator.StringToHash("hSpeed");
     private static readonly int IsSleepingId = Animator.StringToHash("isSleeping");
     private static readonly int JumpId = Animator.StringToHash("jump");
+    private static readonly int SpecialJumpId = Animator.StringToHash("specialJump");
     private static readonly int IsGroundedId = Animator.StringToHash("isGrounded");
     private static readonly int VSpeedId = Animator.StringToHash("vSpeed");
 
     private Animator animator;
     private CharacterController2D character;
+    private bool pendingSpecialJump;
 
     void Start()
     {
@@ -34,11 +36,13 @@ public class CharacterAnimatorBridge : MonoBehaviour
     void OnEnable()
     {
         PlayerController.OnSwitch += OnSwitch;
+        PlayerController.OnSpecialJump += OnSpecialJump;
     }
 
     void OnDisable()
     {
         PlayerController.OnSwitch -= OnSwitch;
+        PlayerController.OnSpecialJump -= OnSpecialJump;
         if (character != null) character.OnJumped -= OnJumped;
     }
 
@@ -47,9 +51,23 @@ public class CharacterAnimatorBridge : MonoBehaviour
         SetSleeping(!isAwake);
     }
 
+    private void OnSpecialJump()
+    {
+        pendingSpecialJump = true;
+        animator.SetTrigger(SpecialJumpId);
+    }
+
     private void OnJumped()
     {
-        animator.SetTrigger(JumpId);
+        if (pendingSpecialJump)
+        {
+            pendingSpecialJump = false;
+            animator.ResetTrigger(JumpId);
+        }
+        else
+        {
+            animator.SetTrigger(JumpId);
+        }
     }
 
     private void SetSleeping(bool sleeping)
