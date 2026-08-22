@@ -20,15 +20,29 @@ public class LevelManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (interactSystem.CollectedStarCount >= 3)
-            {
-                resultUI.gameObject.SetActive(true);
-                OnGoToNextLevel?.Invoke(nextLevel);
-            }
-            else
-            {
-                Debug.Log("Not enough stars");
-            }
+            CheckStarsAndShowUI();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            CheckStarsAndShowUI();
+        }
+    }
+
+
+    private void CheckStarsAndShowUI()
+    {
+        if (interactSystem.CollectedStarCount >= 3)
+        {
+            resultUI.gameObject.SetActive(true);
+            OnGoToNextLevel?.Invoke(nextLevel);
+        }
+        else
+        {
+            Debug.Log("Not enough stars");
         }
     }
 }
