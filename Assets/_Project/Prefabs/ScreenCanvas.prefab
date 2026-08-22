@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 2742178225224080172}
   - component: {fileID: 106886481066584092}
   - component: {fileID: 8682416443981694041}
-  - component: {fileID: 3632256295939045129}
+  - component: {fileID: 2201484117074438368}
   m_Layer: 5
   m_Name: ScreenCanvas
   m_TagString: Untagged
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3632256295939045129
+--- !u!114 &2201484117074438368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -466,12 +466,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6105720009316974812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1720cbc114402ef49b407756ac480217, type: 3}
+  m_Script: {fileID: 11500000, guid: b7e15514d9cd0fd478688686dc54acda, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SceneLoad
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoadWithoutSelect
   sceneName: MainMenu
   playButton: {fileID: 8359222420490624117}
-  isSelectedFirst: 0
 --- !u!1 &8076176449120779369
 GameObject:
   m_ObjectHideFlags: 0
