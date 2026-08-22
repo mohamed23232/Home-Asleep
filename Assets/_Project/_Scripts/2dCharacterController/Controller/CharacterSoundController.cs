@@ -8,20 +8,24 @@ public class CharacterSoundController : MonoBehaviour
     [SerializeField] private AudioClip jumpClip;
     [SerializeField] private AudioClip jumpLandingClip;
     [SerializeField] private AudioClip poofClip;
+    [SerializeField] private AudioClip specialJumpClip;
 
     private CharacterController2D character;
     private AudioSource audioSource;
 
     private bool wasGrounded;
+    private bool pendingSpecialJump;
 
+    private bool isSpecialJumpPlayed = false;
     private void Awake()
     {
         character = GetComponent<CharacterController2D>();
         audioSource = GetComponent<AudioSource>();
-        
+
         // Subscribe to events
         character.OnJumped += PlayJumpSound;
         PlayerController.OnSwitch += PlayPoofSound;
+        PlayerController.OnSpecialJump += PlaySpecialJumpSound;
     }
 
     private void OnDestroy()
@@ -31,6 +35,7 @@ public class CharacterSoundController : MonoBehaviour
             character.OnJumped -= PlayJumpSound;
         }
         PlayerController.OnSwitch -= PlayPoofSound;
+        PlayerController.OnSpecialJump -= PlaySpecialJumpSound;
     }
 
     private void LateUpdate()
@@ -45,10 +50,13 @@ public class CharacterSoundController : MonoBehaviour
 
     private void PlayJumpSound()
     {
-        if (jumpClip != null)
+        if (pendingSpecialJump)
         {
-            audioSource.PlayOneShot(jumpClip);
+            pendingSpecialJump = false;
+            return;
         }
+        if (jumpClip != null)
+            audioSource.PlayOneShot(jumpClip);
     }
 
     private void PlayLandingSound()
@@ -66,4 +74,15 @@ public class CharacterSoundController : MonoBehaviour
             audioSource.PlayOneShot(poofClip);
         }
     }
+
+    private void PlaySpecialJumpSound()
+    {
+        pendingSpecialJump = true;
+        if (specialJumpClip != null && !isSpecialJumpPlayed)
+        {
+            isSpecialJumpPlayed = true;
+            audioSource.PlayOneShot(specialJumpClip);
+        }
+    }
+
 }

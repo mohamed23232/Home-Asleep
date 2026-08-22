@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     public bool IsAsleep => !isAwake;
 
     public static Action<bool> OnSwitch;
-    
+    public static Action OnSpecialJump;
+
     void Awake()
     {
         character = GetComponent<CharacterController2D>();
@@ -26,12 +27,12 @@ public class PlayerController : MonoBehaviour
 
         controls = new InputMaster();
         controls.Player.Movement.performed += ctx => Move(ctx.ReadValue<Vector2>());
-        controls.Player.Movement.canceled  += ctx => Move(Vector2.zero);
-        controls.Player.Jump.started       += Jump;
-        controls.Player.Jump.canceled      += EndJump;
-        controls.Player.Dash.started       += Dash;
-        controls.Player.Interact.started   += Interact;
-        controls.Player.Switch.started     += Switch;
+        controls.Player.Movement.canceled += ctx => Move(Vector2.zero);
+        controls.Player.Jump.started += Jump;
+        controls.Player.Jump.canceled += EndJump;
+        controls.Player.Dash.started += Dash;
+        controls.Player.Interact.started += Interact;
+        controls.Player.Switch.started += Switch;
     }
 
     void FixedUpdate()
@@ -55,6 +56,16 @@ public class PlayerController : MonoBehaviour
             character.Jump();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpecialStart"))
+        {
+            OnSpecialJump?.Invoke();
+            character.Jump();
+        }
+    }
+
 
     private void EndJump(InputAction.CallbackContext context)
     {
@@ -80,6 +91,6 @@ public class PlayerController : MonoBehaviour
         OnSwitch?.Invoke(isAwake);
     }
 
-    void OnEnable()  { controls.Player.Enable(); }
+    void OnEnable() { controls.Player.Enable(); }
     void OnDisable() { controls.Player.Disable(); }
 }
